@@ -45,6 +45,7 @@
 			onClose: null,
 			onClosed: null,
 			icon_type: 'class',
+			new_line_after_title: false,
 			template: '<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>'
 		};
 
@@ -71,6 +72,9 @@
 		options = $.extend(true, {}, content, options);
 		this.settings = $.extend(true, {}, defaults, options);
 		this._defaults = defaults;
+		if (this.settings.new_line_after_title && (content.content.title != "")){
+		    this.settings.content.title += "<br/>";
+		}
 		if (this.settings.content.target == "-") {
 			this.settings.content.target = this.settings.url_target;
 		}
